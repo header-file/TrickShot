@@ -42,19 +42,14 @@ public class Bullet : MonoBehaviour
 
             StartCoroutine(Timelag());
 
-            Enemy[] enemies = FindObjectsOfType<Enemy>();
+            EnemyRed[] enemies = FindObjectsOfType<EnemyRed>();
             for (int i = 0; i < enemies.Length; i++)
                 if (enemies[i].isActiveAndEnabled)
                     enemies[i].DeclineCount();
 
             if (BounceCount <= 0)
             {
-                GameObject twinkle = GameManager.Inst().ObjManager.MakeObj("Twinkle");
-                twinkle.transform.position = transform.position;
-
-                for (int i = 0; i < enemies.Length; i++)
-                    if (enemies[i].isActiveAndEnabled)
-                        enemies[i].ReturnCount();
+                Twinkle();
 
                 gameObject.SetActive(false);
             }
@@ -66,5 +61,19 @@ public class Bullet : MonoBehaviour
         Rig.velocity *= 0.1f;
         yield return new WaitForSeconds(0.075f);
         Rig.velocity *= 10.0f;
+    }
+
+    public void Twinkle()
+    {
+        GameObject twinkle = GameManager.Inst().ObjManager.MakeObj("Twinkle");
+        twinkle.transform.position = transform.position;
+    }
+
+    void OnDisable()
+    {
+        EnemyRed[] enemies = FindObjectsOfType<EnemyRed>();
+        for (int i = 0; i < enemies.Length; i++)
+            if (enemies[i].isActiveAndEnabled)
+                enemies[i].ReturnCount();
     }
 }

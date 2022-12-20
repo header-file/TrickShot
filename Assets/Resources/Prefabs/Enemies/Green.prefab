@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 476170776875597976}
   - component: {fileID: 476170776875597974}
   - component: {fileID: 476170776875597973}
-  - component: {fileID: 6363150977545551452}
+  - component: {fileID: 6522908982682252390}
   m_Layer: 9
-  m_Name: Red
+  m_Name: Green
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: a041e1056a01a934f8eac4312dce99f5, type: 3}
-  m_Color: {r: 0.8584906, g: 0.24701849, b: 0.24701849, a: 1}
+  m_Color: {r: 0.18222678, g: 0.5943396, b: 0.37210152, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -127,7 +127,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6363150977545551452
+--- !u!114 &6522908982682252390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,11 +136,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 476170776875597977}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edafd758fa1175e4e96fda7567af74a2, type: 3}
+  m_Script: {fileID: 11500000, guid: a95769636068b1642a0eac24616370b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextMesh: {fileID: 27098085411008980}
-  Shield: {fileID: 2071907167364817980}
+  TextMesh: {fileID: 0}
+  Shield: {fileID: 0}
 --- !u!1 &2071907167364817980
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7838807054274541927
 Transform:
   m_ObjectHideFlags: 0
@@ -261,7 +261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3045908860215169912
 RectTransform:
   m_ObjectHideFlags: 0
