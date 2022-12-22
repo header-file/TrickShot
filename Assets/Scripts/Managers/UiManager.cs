@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class UiManager : MonoBehaviour
 {
-    public Cylinder Cylinder;
+    public Down Down;
+    public Mid Mid;
+    public StageUI Stage;
 
     public Color[] BulletColors;
 }

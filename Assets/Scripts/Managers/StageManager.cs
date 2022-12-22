@@ -72,6 +72,19 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
+        StartStage();
+    }
+
+    public void StartStage()
+    {
+        MapSetting(CurWorld, CurStage);
+
+        GameManager.Inst().Player.SetCylinder();
+    }
+
+    public void StartStage(int Count)
+    {
+        CurStage += Count;
         MapSetting(CurWorld, CurStage);
 
         GameManager.Inst().Player.SetCylinder();

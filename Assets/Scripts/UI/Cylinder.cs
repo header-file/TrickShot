@@ -28,8 +28,13 @@ public class Cylinder : MonoBehaviour
 
     public void SetUpCylinder()
     {
+        CylinderBase.transform.rotation = Quaternion.Euler(Vector3.zero);
+
         for (int i = 0; i < Bullets.Length; i++)
+        {
+            Bullets[i].gameObject.SetActive(true);
             Bullets[i].color = GameManager.Inst().UiManager.BulletColors[(int)GameManager.Inst().Player.Cylinder[i].Type];
+        }
 
         BounceCount.text = GameManager.Inst().Player.Cylinder[GameManager.Inst().Player.CurBulletIdx].BounceCount.ToString();
     }

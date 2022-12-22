@@ -51,6 +51,9 @@ public class Bullet : MonoBehaviour
             {
                 Twinkle();
 
+                if (GameManager.Inst().Player.Cylinder[GameManager.Inst().Player.CurBulletIdx].Type == BulletType.NONE)
+                    GameManager.Inst().UiManager.Mid.Result.Fail();
+
                 gameObject.SetActive(false);
             }
         }

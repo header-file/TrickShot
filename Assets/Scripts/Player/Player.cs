@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
 
     public void SetCylinder()
     {
+        CurBulletIdx = 0;
         for (int i = 0; i < 6; i++)
         {
             Bullet.BulletType bType = GameManager.Inst().StgManager.Stages[GameManager.Inst().StgManager.CurWorld - 1, GameManager.Inst().StgManager.CurStage - 1].Cylinders[i];
@@ -50,7 +51,7 @@ public class Player : MonoBehaviour
             Cylinder[i].BounceCount = GameManager.Inst().BltManager.BDatas[(int)bType].BounceCount;
         }
 
-        GameManager.Inst().UiManager.Cylinder.SetUpCylinder();
+        GameManager.Inst().UiManager.Down.Cylinder.SetUpCylinder();
     }
 
     void LineRender()
@@ -87,6 +88,6 @@ public class Player : MonoBehaviour
     public void AfterShot()
     {
         GameManager.Inst().BltManager.SetLineData(Cylinder[CurBulletIdx].Type);
-        GameManager.Inst().UiManager.Cylinder.Shot(CurBulletIdx++);
+        GameManager.Inst().UiManager.Down.Cylinder.Shot(CurBulletIdx++);
     }
 }

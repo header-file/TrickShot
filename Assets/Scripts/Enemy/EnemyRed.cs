@@ -64,6 +64,8 @@ public class EnemyRed : Enemy
     void ReturnTime()
     {
         Time.timeScale = 1.0f;
+
+        GameManager.Inst().UiManager.Mid.Result.Clear();
     }
 
     void OnEnable()

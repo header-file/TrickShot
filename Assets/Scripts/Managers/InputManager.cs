@@ -34,7 +34,7 @@ public class InputManager : MonoBehaviour
         GameManager.Inst().Player.Line.gameObject.SetActive(true);
         GameManager.Inst().Player.IsGuiding = true;
 
-        GameManager.Inst().UiManager.Cylinder.gameObject.SetActive(false);
+        GameManager.Inst().UiManager.Down.Cylinder.gameObject.SetActive(false);
 
         if (GameManager.Inst().Player.Cylinder[GameManager.Inst().Player.CurBulletIdx].Type == Bullet.BulletType.TIME)
         {
@@ -66,7 +66,7 @@ public class InputManager : MonoBehaviour
             GameManager.Inst().GrayCamera.ReturnGray();
         }
 
-        GameManager.Inst().UiManager.Cylinder.gameObject.SetActive(true);
+        GameManager.Inst().UiManager.Down.Cylinder.gameObject.SetActive(true);
 
         GameManager.Inst().Player.Line.gameObject.SetActive(false);
         GameManager.Inst().Player.IsGuiding = false;
