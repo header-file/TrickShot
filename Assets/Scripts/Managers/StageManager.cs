@@ -30,9 +30,9 @@ public class StageManager : MonoBehaviour
     void Awake()
     {
         List<Dictionary<string, object>> data = CSVReader.Read("Datas/Stage");
-        Stages = new StageData[1,2];
+        Stages = new StageData[1,10];
         for (int i = 0; i < 1; i++)
-            for (int j = 0; j < 2; j++)
+            for (int j = 0; j < 10; j++)
                 Stages[i, j].Initialize();
         SetMapDatas(data);
 
@@ -82,10 +82,17 @@ public class StageManager : MonoBehaviour
         GameManager.Inst().Player.SetCylinder();
     }
 
-    public void StartStage(int Count)
+    public void NextStage()
     {
-        CurStage += Count;
+        CurStage++;
         MapSetting(CurWorld, CurStage);
+
+        GameManager.Inst().Player.SetCylinder();
+    }
+
+    public void StartStage(int Stage)
+    {
+        MapSetting(CurWorld, Stage);
 
         GameManager.Inst().Player.SetCylinder();
     }

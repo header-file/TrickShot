@@ -56,7 +56,7 @@ public class ResultUI : MonoBehaviour
 
     public void OnClickStageBtn()
     {
-        GameManager.Inst().UiManager.Stage.gameObject.SetActive(true);
+        GameManager.Inst().UiManager.Stage.Show();
     }
 
     public void OnClickRetryBtn()
@@ -68,7 +68,7 @@ public class ResultUI : MonoBehaviour
 
     public void OnClickNextBnt()
     {
-        GameManager.Inst().StgManager.StartStage(1);
+        GameManager.Inst().StgManager.NextStage();
 
         gameObject.SetActive(false);
     }

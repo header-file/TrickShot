@@ -8,6 +8,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject EffectPool;
     public GameObject EnemyPool;
     public GameObject ObjectPool;
+    public GameObject UIPool;
 
     //Bullet Pref
     public GameObject NormalPref;
@@ -28,6 +29,9 @@ public class ObjectManager : MonoBehaviour
     public GameObject SpinPref;
     public GameObject ElevatePref;
 
+    //UI Pref
+    public GameObject StageSlotPref;
+
     GameObject[] Normals;
     GameObject[] Pierces;
     GameObject[] Times;
@@ -42,6 +46,8 @@ public class ObjectManager : MonoBehaviour
     GameObject[] Moves;
     GameObject[] Spins;
     GameObject[] Elevates;
+
+    GameObject[] StageSlots;
 
     GameObject[] TargetPool;
 
@@ -62,6 +68,8 @@ public class ObjectManager : MonoBehaviour
         Moves = new GameObject[10];
         Spins = new GameObject[10];
         Elevates = new GameObject[10];
+
+        StageSlots = new GameObject[20];
 
         Generate();
     }
@@ -147,6 +155,14 @@ public class ObjectManager : MonoBehaviour
             Elevates[i].transform.SetParent(ObjectPool.transform, false);
             Elevates[i].SetActive(false);
         }
+
+
+        for (int i = 0; i < StageSlots.Length; i++)
+        {
+            StageSlots[i] = Instantiate(StageSlotPref);
+            StageSlots[i].transform.SetParent(UIPool.transform, false);
+            StageSlots[i].SetActive(false);
+        }
     }
 
     public GameObject MakeObj(string Type)
@@ -198,6 +214,11 @@ public class ObjectManager : MonoBehaviour
 
             case "Elevate":
                 TargetPool = Elevates;
+                break;
+
+
+            case "StageSlot":
+                TargetPool = StageSlots;
                 break;
         }
 
