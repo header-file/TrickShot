@@ -10,9 +10,12 @@ public class ResultUI : MonoBehaviour
     public Color StarBright;
     public Button NextBtn;
 
+    public bool IsHintUsed;
+
 
     void Start()
     {
+        IsHintUsed = false;
         gameObject.SetActive(false);
     }
 
@@ -40,7 +43,15 @@ public class ResultUI : MonoBehaviour
 
     int CheckStar()
     {
-        return 3;
+        int starCount = 1;
+
+        if (!IsHintUsed)
+            starCount++;
+
+        if (GameManager.Inst().Player.Cylinder[GameManager.Inst().Player.CurBulletIdx].Type != Bullet.BulletType.NONE)
+            starCount++;
+
+        return starCount;
     }
 
     void SetStars(int Count)

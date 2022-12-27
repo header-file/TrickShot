@@ -26,7 +26,7 @@ public class InputManager : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (EventSystem.current.IsPointerOverGameObject(PointerID) || !IsReload || GameManager.Inst().Player.IsCylinderEmpty())
+        if (EventSystem.current.IsPointerOverGameObject() || !IsReload || GameManager.Inst().Player.IsCylinderEmpty())
             return;
 
         IsAiming = true;
@@ -45,7 +45,7 @@ public class InputManager : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (EventSystem.current.IsPointerOverGameObject(PointerID) || !IsAiming)
+        if (EventSystem.current.IsPointerOverGameObject() || !IsAiming)
             return;
 
         MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

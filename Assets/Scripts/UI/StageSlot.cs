@@ -11,6 +11,12 @@ public class StageSlot : MonoBehaviour
 
     public void SetStageNumber(int num) { StageNumber.text = num.ToString(); }
 
+    public void SetStars(int count)
+    {
+        for(int i = 0; i < count; i++)
+            Stars[i].color = GameManager.Inst().UiManager.Mid.Result.StarBright;
+    }
+
     public void OnClickBtn()
     {
         int stage = int.Parse(StageNumber.text);

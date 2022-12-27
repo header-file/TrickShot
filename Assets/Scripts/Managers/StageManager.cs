@@ -15,11 +15,13 @@ public class StageManager : MonoBehaviour
     {
         public List<BlockData> Blocks;
         public Bullet.BulletType[] Cylinders;
+        public int StarCount;
 
         public void Initialize()
         {
             Blocks = new List<BlockData>();
             Cylinders = new Bullet.BulletType[6];
+            StarCount = 0;
         }
     }
 
