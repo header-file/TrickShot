@@ -17,6 +17,7 @@ public class ObjectManager : MonoBehaviour
 
     //Enemy Pref
     public GameObject RedPref;
+    public GameObject GreenPref;
 
     //Effect Pref
     public GameObject TwinklePref;
@@ -30,6 +31,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject ElevatePref;
 
     //UI Pref
+    public GameObject UIPref;
     public GameObject StageSlotPref;
 
     GameObject[] Normals;
@@ -40,6 +42,7 @@ public class ObjectManager : MonoBehaviour
     GameObject[] Explosions;
 
     GameObject[] Reds;
+    GameObject[] Greens;
 
     GameObject[] Walls;
     GameObject[] Breaks;
@@ -47,6 +50,7 @@ public class ObjectManager : MonoBehaviour
     GameObject[] Spins;
     GameObject[] Elevates;
 
+    GameObject[] UIs;
     GameObject[] StageSlots;
 
     GameObject[] TargetPool;
@@ -59,6 +63,7 @@ public class ObjectManager : MonoBehaviour
         Times = new GameObject[5];
 
         Reds = new GameObject[10];
+        Greens = new GameObject[10];
 
         Explosions = new GameObject[5];
         Twinkles = new GameObject[5];
@@ -69,6 +74,7 @@ public class ObjectManager : MonoBehaviour
         Spins = new GameObject[10];
         Elevates = new GameObject[10];
 
+        UIs = new GameObject[1];
         StageSlots = new GameObject[20];
 
         Generate();
@@ -103,6 +109,13 @@ public class ObjectManager : MonoBehaviour
             Reds[i] = Instantiate(RedPref);
             Reds[i].transform.SetParent(EnemyPool.transform, false);
             Reds[i].SetActive(false);
+        }
+
+        for (int i = 0; i < Greens.Length; i++)
+        {
+            Greens[i] = Instantiate(GreenPref);
+            Greens[i].transform.SetParent(EnemyPool.transform, false);
+            Greens[i].SetActive(false);
         }
 
 
@@ -157,6 +170,13 @@ public class ObjectManager : MonoBehaviour
         }
 
 
+        for (int i = 0; i < UIs.Length; i++)
+        {
+            UIs[i] = Instantiate(UIPref);
+            UIs[i].transform.SetParent(UIPool.transform, false);
+            UIs[i].SetActive(false);
+        }
+
         for (int i = 0; i < StageSlots.Length; i++)
         {
             StageSlots[i] = Instantiate(StageSlotPref);
@@ -184,6 +204,10 @@ public class ObjectManager : MonoBehaviour
 
             case "Red":
                 TargetPool = Reds;
+                break;
+
+            case "Green":
+                TargetPool = Greens;
                 break;
 
 
@@ -216,6 +240,10 @@ public class ObjectManager : MonoBehaviour
                 TargetPool = Elevates;
                 break;
 
+
+            case "UI":
+                TargetPool = UIs;
+                break;
 
             case "StageSlot":
                 TargetPool = StageSlots;

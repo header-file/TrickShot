@@ -78,5 +78,7 @@ public class Bullet : MonoBehaviour
         for (int i = 0; i < enemies.Length; i++)
             if (enemies[i].isActiveAndEnabled)
                 enemies[i].ReturnCount();
+
+        StopAllCoroutines();
     }
 }

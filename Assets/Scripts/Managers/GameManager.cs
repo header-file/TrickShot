@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour
 
    void Start()
     {
-        
+        UiManager = ObjManager.MakeObj("UI").GetComponent<UiManager>();
+        UiManager.transform.parent = transform.parent;
     }
 
     void Update()

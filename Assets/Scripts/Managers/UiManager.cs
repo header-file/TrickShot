@@ -9,4 +9,9 @@ public class UiManager : MonoBehaviour
     public StageUI Stage;
 
     public Color[] BulletColors;
+
+    void Start()
+    {
+        Down.Cylinder.SetUpCylinder();
+    }
 }

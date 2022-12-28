@@ -44,14 +44,14 @@ public class Player : MonoBehaviour
     public void SetCylinder()
     {
         CurBulletIdx = 0;
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < Constants.MAXCYLINDER; i++)
         {
             Bullet.BulletType bType = GameManager.Inst().StgManager.Stages[GameManager.Inst().StgManager.CurWorld - 1, GameManager.Inst().StgManager.CurStage - 1].Cylinders[i];
             Cylinder[i].Type = bType;
             Cylinder[i].BounceCount = GameManager.Inst().BltManager.BDatas[(int)bType].BounceCount;
         }
 
-        GameManager.Inst().UiManager.Down.Cylinder.SetUpCylinder();
+        //GameManager.Inst().UiManager.Down.Cylinder.SetUpCylinder();
     }
 
     void LineRender()
