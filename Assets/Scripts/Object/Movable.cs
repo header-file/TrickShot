@@ -8,7 +8,10 @@ public class Movable : Block
     public float Speed;
 
     int TargetIndex;
+    bool IsMoving;
 
+
+    public void SetMoving(bool b) { IsMoving = b; }
 
     void Start()
     {
@@ -18,6 +21,9 @@ public class Movable : Block
 
     void Update()
     {
+        if (!IsMoving)
+            return;
+
         transform.position = Vector3.MoveTowards(transform.position, TargetPositions[TargetIndex], Time.deltaTime * Speed);
 
         if(Vector3.Distance(transform.position, TargetPositions[TargetIndex]) <= 0.001f)
@@ -30,5 +36,6 @@ public class Movable : Block
         Box.size = Sprite.transform.localScale;
         TargetIndex = 0;
         Speed = 1.0f;
+        IsMoving = false;
     }
 }

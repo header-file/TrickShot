@@ -9,7 +9,6 @@ public class InputManager : MonoBehaviour
 
     public bool IsReload;
 
-    int PointerID = 0;
     bool IsAiming;
 
 
@@ -38,7 +37,7 @@ public class InputManager : MonoBehaviour
 
         if (GameManager.Inst().Player.Cylinder[GameManager.Inst().Player.CurBulletIdx].Type == Bullet.BulletType.TIME)
         {
-            GameManager.Inst().GrayCamera.ToGray();
+            GameManager.Inst().StartToGray();
             Time.timeScale = 0.25f;
         }
     }
@@ -63,7 +62,7 @@ public class InputManager : MonoBehaviour
         if (GameManager.Inst().Player.Cylinder[GameManager.Inst().Player.CurBulletIdx].Type == Bullet.BulletType.TIME)
         {
             Time.timeScale = 1.0f;
-            GameManager.Inst().GrayCamera.ReturnGray();
+            GameManager.Inst().StartEndGray();
         }
 
         GameManager.Inst().UiManager.Down.Cylinder.gameObject.SetActive(true);

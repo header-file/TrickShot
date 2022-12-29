@@ -40,8 +40,6 @@ public class Bullet : MonoBehaviour
 
             GameManager.Inst().BltManager.SetLinePos(collision.contacts[0].point);
 
-            StartCoroutine(Timelag());
-
             EnemyRed[] enemies = FindObjectsOfType<EnemyRed>();
             for (int i = 0; i < enemies.Length; i++)
                 if (enemies[i].isActiveAndEnabled)
@@ -56,6 +54,9 @@ public class Bullet : MonoBehaviour
 
                 gameObject.SetActive(false);
             }
+
+            if(gameObject.activeSelf)
+                StartCoroutine(Timelag());
         }
     }
 

@@ -63,11 +63,16 @@ public class ResultUI : MonoBehaviour
             else
                 Stars[i].color = Color.gray;
         }
+
+        //Save
+        GameManager.Inst().DatManager.GameData.SetStar(GameManager.Inst().StgManager.CurWorld, GameManager.Inst().StgManager.CurStage, Count);
     }
 
     public void OnClickStageBtn()
     {
         GameManager.Inst().UiManager.Stage.Show();
+
+        gameObject.SetActive(false);
     }
 
     public void OnClickRetryBtn()

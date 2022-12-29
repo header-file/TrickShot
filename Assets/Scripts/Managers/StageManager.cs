@@ -22,14 +22,12 @@ public class StageManager : MonoBehaviour
         public List<BlockData> Blocks;
         public List<EnemyData> Enemies;
         public Bullet.BulletType[] Cylinders;
-        public int StarCount;
 
         public void Initialize()
         {
             Blocks = new List<BlockData>();
             Enemies = new List<EnemyData>();
-            Cylinders = new Bullet.BulletType[Constants.MAXCYLINDER];
-            StarCount = 0;
+            Cylinders = new Bullet.BulletType[Constants.MAX_CYLINDER];
         }
     }
 
@@ -40,9 +38,9 @@ public class StageManager : MonoBehaviour
     void Awake()
     {
         List<Dictionary<string, object>> data = CSVReader.Read("Datas/Stage");
-        Stages = new StageData[Constants.MAXWORLD, Constants.MAXSTAGE];
-        for (int i = 0; i < Constants.MAXWORLD; i++)
-            for (int j = 0; j < Constants.MAXSTAGE; j++)
+        Stages = new StageData[Constants.MAX_WORLD, Constants.MAX_STAGE];
+        for (int i = 0; i < Constants.MAX_WORLD; i++)
+            for (int j = 0; j < Constants.MAX_STAGE; j++)
                 Stages[i, j].Initialize();
         SetMapDatas(data);
 
@@ -92,7 +90,7 @@ public class StageManager : MonoBehaviour
 
         while(data.Count > index)
         {
-            for (int i = 0; i < Constants.MAXCYLINDER; i++)
+            for (int i = 0; i < Constants.MAX_CYLINDER; i++)
                 Stages[int.Parse(data[index]["World"].ToString()) - 1, int.Parse(data[index]["Stage"].ToString()) - 1].Cylinders[i] = (Bullet.BulletType)int.Parse(data[index][i.ToString()].ToString());
 
             index++;
@@ -106,6 +104,9 @@ public class StageManager : MonoBehaviour
 
     public void StartStage()
     {
+        GameManager.Inst().BltManager.ResetLines();
+        GameManager.Inst().UiManager.Down.Cylinder.ResetCylinder();
+
         MapSetting(CurWorld, CurStage);
         EnemySetting(CurWorld, CurStage);
 
@@ -128,6 +129,10 @@ public class StageManager : MonoBehaviour
 
     void MapSetting(int World, int Stage)
     {
+        Block[] obj = GameManager.Inst().ObjManager.ObjectPool.GetComponentsInChildren<Block>();
+        for (int i = 0; i < obj.Length; i++)
+            obj[i].gameObject.SetActive(false);
+
         for(int i = 0; i < Stages[World - 1, Stage - 1].Blocks.Count; i++)
         {
             switch(Stages[World - 1, Stage - 1].Blocks[i].Type)
@@ -167,6 +172,11 @@ public class StageManager : MonoBehaviour
 
     void EnemySetting(int World, int Stage)
     {
+
+        Enemy[] e = GameManager.Inst().ObjManager.EnemyPool.GetComponentsInChildren<Enemy>();
+        for (int i = 0; i < e.Length; i++)
+            e[i].gameObject.SetActive(false);
+
         for (int i = 0; i < Stages[World - 1, Stage - 1].Enemies.Count; i++)
         {
             switch (Stages[World - 1, Stage - 1].Enemies[i].Type)

@@ -18,7 +18,7 @@ public class BulletManager : MonoBehaviour
 
     void Awake()
     {
-        BDatas = new BulletData[4];
+        BDatas = new BulletData[Constants.MAX_BULLET_TYPE];
         SetBulletData();
 
         LineCount = 0;
@@ -52,5 +52,11 @@ public class BulletManager : MonoBehaviour
     void ShowLine()
     {
         Line.widthMultiplier = 0.25f;
+    }
+
+    public void ResetLines()
+    {
+        for (int i = 0; i < Line.positionCount; i++)
+            Line.SetPosition(i, Vector3.zero);
     }
 }

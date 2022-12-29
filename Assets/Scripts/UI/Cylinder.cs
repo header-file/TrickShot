@@ -69,4 +69,10 @@ public class Cylinder : MonoBehaviour
             GameManager.Inst().IptManager.IsReload = true;
         }
     }
+
+    public void ResetCylinder()
+    {
+        TargetRot = 0.0f;
+        CylinderBase.transform.rotation = Quaternion.identity;
+    }
 }

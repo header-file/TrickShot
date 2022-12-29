@@ -13,6 +13,9 @@ public class StageSlot : MonoBehaviour
 
     public void SetStars(int count)
     {
+        for (int i = 0; i < 3; i++)
+            Stars[i].color = Color.gray;
+
         for(int i = 0; i < count; i++)
             Stars[i].color = GameManager.Inst().UiManager.Mid.Result.StarBright;
     }

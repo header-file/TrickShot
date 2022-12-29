@@ -72,7 +72,7 @@ public class StageUI : MonoBehaviour
 
     void ShowStage(int World)
     {
-        for (int i = 1; i <= Constants.MAXSTAGE; i++)
+        for (int i = 1; i <= Constants.MAX_STAGE; i++)
         {
             if (GameManager.Inst().StgManager.Stages[World - 1, i - 1].Blocks.Count <= 0)
                 return;
@@ -84,7 +84,7 @@ public class StageUI : MonoBehaviour
             slot.SetStageNumber(i);
 
             //º° ¼¼ÆÃ
-
+            slot.SetStars(GameManager.Inst().DatManager.GameData.GetStar(World, i));
         }
     }
 
@@ -95,7 +95,7 @@ public class StageUI : MonoBehaviour
 
         GameManager.Inst().StgManager.CurWorld++;
 
-        if (GameManager.Inst().StgManager.CurWorld > Constants.MAXWORLD)
+        if (GameManager.Inst().StgManager.CurWorld > Constants.MAX_WORLD)
             GameManager.Inst().StgManager.CurWorld = 1;
 
         IsFade = true;
@@ -109,7 +109,7 @@ public class StageUI : MonoBehaviour
         GameManager.Inst().StgManager.CurWorld--;
 
         if (GameManager.Inst().StgManager.CurWorld <= 0)
-            GameManager.Inst().StgManager.CurWorld = Constants.MAXWORLD;
+            GameManager.Inst().StgManager.CurWorld = Constants.MAX_WORLD;
 
         IsFade = true;
     }
