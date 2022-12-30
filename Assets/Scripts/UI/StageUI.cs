@@ -7,6 +7,7 @@ public class StageUI : MonoBehaviour
 {
     public Text WorldNumber;
     public GameObject Stage;
+    public Sprite[] ButtonImgs;
 
     CanvasGroup StageGrid;
     bool IsFade;
@@ -62,9 +63,10 @@ public class StageUI : MonoBehaviour
 
     void EraseStage()
     {
-        for(int i = 0; i < Stage.transform.childCount; i++)
+        int childCount = Stage.transform.childCount;
+        for(int i = 0; i < childCount; i++)
         {
-            GameObject slot = Stage.transform.GetChild(i).gameObject;
+            GameObject slot = Stage.transform.GetChild(0).gameObject;
             slot.transform.parent = GameManager.Inst().ObjManager.UIPool.transform;
             slot.SetActive(false);
         }
@@ -82,6 +84,24 @@ public class StageUI : MonoBehaviour
 
             StageSlot slot = stageSlot.GetComponent<StageSlot>();
             slot.SetStageNumber(i);
+
+            //Button 이미지
+            if (World > GameManager.Inst().StgManager.ReaWorld)
+            {
+                slot.Button.image.sprite = ButtonImgs[0];
+                slot.Button.interactable = false;
+            }
+            else if (World == GameManager.Inst().StgManager.ReaWorld &&
+                i > GameManager.Inst().StgManager.ReaStage)
+            {
+                slot.Button.image.sprite = ButtonImgs[0];
+                slot.Button.interactable = false;
+            }
+            else
+            {
+                slot.Button.image.sprite = ButtonImgs[1];
+                slot.Button.interactable = true;
+            }
 
             //별 세팅
             slot.SetStars(GameManager.Inst().DatManager.GameData.GetStar(World, i));

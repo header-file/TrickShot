@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2885360098257534566}
   - component: {fileID: 694120213303570446}
   - component: {fileID: 3868624334542237979}
+  - component: {fileID: 8481174532163648824}
   m_Layer: 5
   m_Name: StageSlot
   m_TagString: Untagged
@@ -79,7 +80,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 3353100581936984748}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -112,6 +113,19 @@ MonoBehaviour:
   - {fileID: 4696114705835445096}
   - {fileID: 883947630819538756}
   - {fileID: 5940587671994255838}
+  Button: {fileID: 694120213303570446}
+--- !u!225 &8481174532163648824
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054791798881703083}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4131811363043465971
 GameObject:
   m_ObjectHideFlags: 0

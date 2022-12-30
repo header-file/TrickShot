@@ -32,8 +32,11 @@ public class StageManager : MonoBehaviour
     }
 
     public StageData[,] Stages;
-    public int CurWorld = 1;
-    public int CurStage = 1;
+    public int CurWorld;
+    public int CurStage;
+    public int ReaWorld;
+    public int ReaStage;
+
 
     void Awake()
     {
@@ -49,6 +52,11 @@ public class StageManager : MonoBehaviour
 
         data = CSVReader.Read("Datas/Bullet_Count");
         SetCylinderDatas(data);
+
+        CurWorld = 1;
+        CurStage = 1;
+        ReaWorld = 1;
+        ReaStage = 1;
     }
 
     void SetMapDatas(List<Dictionary<string, object>> data)

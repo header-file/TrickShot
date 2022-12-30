@@ -323,6 +323,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorldNumber: {fileID: 4712003770886804678}
   Stage: {fileID: 1909156821254463397}
+  ButtonImgs:
+  - {fileID: 21300000, guid: 1684c66aa7f40544ca33102ba7a69724, type: 3}
+  - {fileID: 21300000, guid: 50ae2374701e74043a0002d1913a98f0, type: 3}
 --- !u!1 &6235724587996662371
 GameObject:
   m_ObjectHideFlags: 0

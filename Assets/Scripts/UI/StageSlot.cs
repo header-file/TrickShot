@@ -7,6 +7,7 @@ public class StageSlot : MonoBehaviour
 {
     public Text StageNumber;
     public Image[] Stars;
+    public Button Button;
 
 
     public void SetStageNumber(int num) { StageNumber.text = num.ToString(); }

@@ -25,6 +25,13 @@ public class ResultUI : MonoBehaviour
         Results[1].SetActive(false);
         SetStars(CheckStar());
 
+        GameManager.Inst().StgManager.ReaStage++;
+        if(GameManager.Inst().StgManager.ReaStage >= Constants.MAX_STAGE)
+        {
+            GameManager.Inst().StgManager.ReaWorld++;
+            GameManager.Inst().StgManager.ReaStage = 1;
+        }
+
         NextBtn.interactable = true;
 
         gameObject.SetActive(true);
