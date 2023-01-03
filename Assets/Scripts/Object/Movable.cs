@@ -12,7 +12,7 @@ public class Movable : Block
 
 
     public void SetMoving(bool b) { IsMoving = b; }
-
+    
     void Start()
     {
         Box = GetComponent<BoxCollider2D>();
@@ -35,7 +35,8 @@ public class Movable : Block
         ReturnSprite();
         Box.size = Sprite.transform.localScale;
         TargetIndex = 0;
-        Speed = 1.0f;
+        Speed = 3.0f;
         IsMoving = false;
+        TargetPositions = new Vector3[2];
     }
 }

@@ -1157,6 +1157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurWorld: 1
   CurStage: 1
+  ReaWorld: 0
+  ReaStage: 0
 --- !u!114 &1949842132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1186,6 +1188,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ace2c67d35ff945b930d7015ac59be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SaveDataFileName: SavedData.json
+  _gameData:
+    StarCounts: 
+    ReachedWorld: 0
+    ReachedStage: 0
 --- !u!1 &1968328533
 GameObject:
   m_ObjectHideFlags: 0

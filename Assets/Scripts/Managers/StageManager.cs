@@ -37,6 +37,8 @@ public class StageManager : MonoBehaviour
     public int ReaWorld;
     public int ReaStage;
 
+    List<Vector2> TargetPositions;
+
 
     void Awake()
     {
@@ -46,6 +48,10 @@ public class StageManager : MonoBehaviour
             for (int j = 0; j < Constants.MAX_STAGE; j++)
                 Stages[i, j].Initialize();
         SetMapDatas(data);
+
+        TargetPositions = new List<Vector2>();
+        data = CSVReader.Read("Datas/Stage_Movable");
+        SetTargetPositions(data);
 
         data = CSVReader.Read("Datas/Enemy");
         SetEnemyDatas(data);
@@ -71,6 +77,22 @@ public class StageManager : MonoBehaviour
             block.Size = new Vector2(float.Parse(data[index]["Width"].ToString()), float.Parse(data[index]["Height"].ToString()));
 
             Stages[int.Parse(data[index]["World"].ToString()) - 1, int.Parse(data[index]["Stage"].ToString()) - 1].Blocks.Add(block);
+
+            index++;
+        }
+    }
+
+    void SetTargetPositions(List<Dictionary<string, object>> data)
+    {
+        int index = 0;
+
+        while (data.Count > index)
+        {
+            Vector2 pos = new Vector2(float.Parse(data[index]["x1"].ToString()), float.Parse(data[index]["y1"].ToString()));
+            TargetPositions.Add(pos);
+
+            pos = new Vector2(float.Parse(data[index]["x2"].ToString()), float.Parse(data[index]["y2"].ToString()));
+            TargetPositions.Add(pos);
 
             index++;
         }
@@ -141,7 +163,8 @@ public class StageManager : MonoBehaviour
         for (int i = 0; i < obj.Length; i++)
             obj[i].gameObject.SetActive(false);
 
-        for(int i = 0; i < Stages[World - 1, Stage - 1].Blocks.Count; i++)
+        int moveCount = 0;
+        for (int i = 0; i < Stages[World - 1, Stage - 1].Blocks.Count; i++)
         {
             switch(Stages[World - 1, Stage - 1].Blocks[i].Type)
             {
@@ -161,6 +184,11 @@ public class StageManager : MonoBehaviour
                     block = GameManager.Inst().ObjManager.MakeObj("Move").GetComponent<Block>();
                     block.transform.position = Stages[World - 1, Stage - 1].Blocks[i].Pos;
                     block.SetSize(Stages[World - 1, Stage - 1].Blocks[i].Size);
+
+                    Movable move = block.GetComponent<Movable>();
+                    move.TargetPositions[0] = TargetPositions[moveCount++];
+                    move.TargetPositions[1] = TargetPositions[moveCount++];
+                    move.SetMoving(true);
                     break;
 
                 case Block.BlockType.SPINNABLE:

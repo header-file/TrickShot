@@ -75,7 +75,9 @@ MonoBehaviour:
   Box: {fileID: 8166383649732297767}
   Sprite: {fileID: 8484104608088167375}
   Type: 2
-  TargetPositions: []
+  TargetPositions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   Speed: 0
 --- !u!1 &8484104608088167375
 GameObject:
@@ -149,7 +151,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.47654265, g: 0.7075472, b: 0.39048594, a: 1}
   m_FlipX: 0
