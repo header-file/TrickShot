@@ -6,6 +6,7 @@ public class UiManager : MonoBehaviour
 {
     public Down Down;
     public Mid Mid;
+    public MenuBar MenuBar;
     public StageUI Stage;
 
     public Color[] BulletColors;

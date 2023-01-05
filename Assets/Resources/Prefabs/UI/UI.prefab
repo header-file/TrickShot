@@ -172,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Down: {fileID: 4079726429983592568}
   Mid: {fileID: 7720334050248170647}
+  MenuBar: {fileID: 5333902127783746955}
   Stage: {fileID: 3415025136672783001}
   BulletColors:
   - {r: 0, g: 0, b: 0, a: 0}
@@ -875,6 +876,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1461309127299445164, guid: d9db9afb15c18e04ab616f4c71bf52e9, type: 3}
   m_PrefabInstance: {fileID: 6711034772916869114}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5333902127783746955 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1668496973835078257, guid: d9db9afb15c18e04ab616f4c71bf52e9, type: 3}
+  m_PrefabInstance: {fileID: 6711034772916869114}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e124a51e2af304882ef6593bee42f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7678087786245659706
 PrefabInstance:
   m_ObjectHideFlags: 0

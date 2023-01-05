@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public StageManager StgManager;
     public BulletManager BltManager;
     public DataManager DatManager;
+    public HintManager HntManager;
 
     public Player Player;
     public VolumeProfile VolumeProfile;

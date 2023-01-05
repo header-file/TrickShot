@@ -35,6 +35,8 @@ public class ResultUI : MonoBehaviour
         NextBtn.interactable = true;
 
         gameObject.SetActive(true);
+
+        Debug.Log(GameManager.Inst().BltManager.Line.GetPosition(1));
     }
 
     public void Fail()
@@ -72,7 +74,8 @@ public class ResultUI : MonoBehaviour
         }
 
         //Save
-        GameManager.Inst().DatManager.GameData.SetStar(GameManager.Inst().StgManager.CurWorld, GameManager.Inst().StgManager.CurStage, Count);
+        if(GameManager.Inst().DatManager.GameData.GetStar(GameManager.Inst().StgManager.CurWorld, GameManager.Inst().StgManager.CurStage) < Count)
+            GameManager.Inst().DatManager.GameData.SetStar(GameManager.Inst().StgManager.CurWorld, GameManager.Inst().StgManager.CurStage, Count);
     }
 
     public void OnClickStageBtn()

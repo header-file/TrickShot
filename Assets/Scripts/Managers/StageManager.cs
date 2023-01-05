@@ -9,6 +9,12 @@ public class StageManager : MonoBehaviour
         public Block.BlockType Type;
         public Vector2 Pos;
         public Vector2 Size;
+        public List<Vector2> TargetPositions;
+
+        public void Initialize()
+        {
+            TargetPositions = new List<Vector2>();
+        }
     }
 
     public struct EnemyData
@@ -22,6 +28,7 @@ public class StageManager : MonoBehaviour
         public List<BlockData> Blocks;
         public List<EnemyData> Enemies;
         public Bullet.BulletType[] Cylinders;
+        public Vector2 HintPos;
 
         public void Initialize()
         {
@@ -37,8 +44,6 @@ public class StageManager : MonoBehaviour
     public int ReaWorld;
     public int ReaStage;
 
-    List<Vector2> TargetPositions;
-
 
     void Awake()
     {
@@ -49,9 +54,8 @@ public class StageManager : MonoBehaviour
                 Stages[i, j].Initialize();
         SetMapDatas(data);
 
-        TargetPositions = new List<Vector2>();
-        data = CSVReader.Read("Datas/Stage_Movable");
-        SetTargetPositions(data);
+        data = CSVReader.Read("Datas/Hint");
+        SetHintData(data);
 
         data = CSVReader.Read("Datas/Enemy");
         SetEnemyDatas(data);
@@ -69,12 +73,27 @@ public class StageManager : MonoBehaviour
     {
         int index = 0;
 
+        List<Dictionary<string, object>> targetData = CSVReader.Read("Datas/Stage_Movable");
+        int moveIndex = 0;
+
         while (data.Count > index)
         {
             BlockData block = new BlockData();
+            block.Initialize();
             block.Type = (Block.BlockType)int.Parse(data[index]["Type"].ToString());
             block.Pos = new Vector2(float.Parse(data[index]["x"].ToString()), float.Parse(data[index]["y"].ToString()));
             block.Size = new Vector2(float.Parse(data[index]["Width"].ToString()), float.Parse(data[index]["Height"].ToString()));
+
+            if(block.Type == Block.BlockType.MOVABLE)
+            {
+                Vector2 pos = new Vector2(float.Parse(targetData[moveIndex]["x1"].ToString()), float.Parse(targetData[moveIndex]["y1"].ToString()));
+                block.TargetPositions.Add(pos);
+
+                pos = new Vector2(float.Parse(targetData[moveIndex]["x2"].ToString()), float.Parse(targetData[moveIndex]["y2"].ToString()));
+                block.TargetPositions.Add(pos);
+
+                moveIndex++;
+            }
 
             Stages[int.Parse(data[index]["World"].ToString()) - 1, int.Parse(data[index]["Stage"].ToString()) - 1].Blocks.Add(block);
 
@@ -82,17 +101,14 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    void SetTargetPositions(List<Dictionary<string, object>> data)
+    void SetHintData(List<Dictionary<string, object>> data)
     {
         int index = 0;
 
         while (data.Count > index)
         {
-            Vector2 pos = new Vector2(float.Parse(data[index]["x1"].ToString()), float.Parse(data[index]["y1"].ToString()));
-            TargetPositions.Add(pos);
-
-            pos = new Vector2(float.Parse(data[index]["x2"].ToString()), float.Parse(data[index]["y2"].ToString()));
-            TargetPositions.Add(pos);
+            Stages[int.Parse(data[index]["World"].ToString()) - 1, int.Parse(data[index]["Stage"].ToString()) - 1].HintPos =
+                new Vector2(float.Parse(data[index]["x"].ToString()), float.Parse(data[index]["y"].ToString()));
 
             index++;
         }
@@ -135,6 +151,9 @@ public class StageManager : MonoBehaviour
     public void StartStage()
     {
         GameManager.Inst().BltManager.ResetLines();
+        GameManager.Inst().HntManager.ResetLine();
+        GameManager.Inst().UiManager.Mid.Result.IsHintUsed = false;
+        GameManager.Inst().UiManager.MenuBar.HintBtn.interactable = true;
         GameManager.Inst().UiManager.Down.Cylinder.ResetCylinder();
 
         MapSetting(CurWorld, CurStage);
@@ -146,6 +165,12 @@ public class StageManager : MonoBehaviour
     public void NextStage()
     {
         CurStage++;
+
+        if(CurStage > Constants.MAX_STAGE)
+        {
+            CurStage = 1;
+            CurWorld++;
+        }
 
         StartStage();
     }
@@ -163,7 +188,6 @@ public class StageManager : MonoBehaviour
         for (int i = 0; i < obj.Length; i++)
             obj[i].gameObject.SetActive(false);
 
-        int moveCount = 0;
         for (int i = 0; i < Stages[World - 1, Stage - 1].Blocks.Count; i++)
         {
             switch(Stages[World - 1, Stage - 1].Blocks[i].Type)
@@ -186,8 +210,8 @@ public class StageManager : MonoBehaviour
                     block.SetSize(Stages[World - 1, Stage - 1].Blocks[i].Size);
 
                     Movable move = block.GetComponent<Movable>();
-                    move.TargetPositions[0] = TargetPositions[moveCount++];
-                    move.TargetPositions[1] = TargetPositions[moveCount++];
+                    move.TargetPositions[0] = Stages[World - 1, Stage - 1].Blocks[i].TargetPositions[0];
+                    move.TargetPositions[1] = Stages[World - 1, Stage - 1].Blocks[i].TargetPositions[1];
                     move.SetMoving(true);
                     break;
 
