@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
             Cylinder[i].BounceCount = GameManager.Inst().BltManager.BDatas[(int)bType].BounceCount;
         }
 
-        //GameManager.Inst().UiManager.Down.Cylinder.SetUpCylinder();
+        GameManager.Inst().UiManager.Down.Cylinder.SetUpCylinder();
     }
 
     void LineRender()

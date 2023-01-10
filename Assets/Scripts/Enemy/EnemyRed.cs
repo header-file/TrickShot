@@ -70,8 +70,11 @@ public class EnemyRed : Enemy
 
     void OnEnable()
     {
-        ShieldCount = 3;
-        TextMesh.SetNumber(ShieldCount);
+        if (GameManager.Inst() != null)
+        {
+            ShieldCount = GameManager.Inst().StgManager.Stages[GameManager.Inst().StgManager.CurWorld - 1, GameManager.Inst().StgManager.CurStage - 1].Enemies[0].Count;
+            TextMesh.SetNumber(ShieldCount);
+        }
         IsInvincible = true;
     }
 }

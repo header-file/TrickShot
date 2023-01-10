@@ -21,6 +21,7 @@ public class StageManager : MonoBehaviour
     {
         public Enemy.EnemyType Type;
         public Vector2 Pos;
+        public int Count;
     }
 
     public struct StageData
@@ -123,6 +124,7 @@ public class StageManager : MonoBehaviour
             EnemyData enemy = new EnemyData();
             enemy.Type = (Enemy.EnemyType)int.Parse(data[index]["Type"].ToString());
             enemy.Pos = new Vector2(float.Parse(data[index]["x"].ToString()), float.Parse(data[index]["y"].ToString()));
+            enemy.Count = int.Parse(data[index]["Count"].ToString());
 
             Stages[int.Parse(data[index]["World"].ToString()) - 1, int.Parse(data[index]["Stage"].ToString()) - 1].Enemies.Add(enemy);
 
